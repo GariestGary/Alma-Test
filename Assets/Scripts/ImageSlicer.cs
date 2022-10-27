@@ -9,27 +9,20 @@ public class ImageSlicer : MonoBehaviour
     [SerializeField] private List<DifficultyPattern> patterns;
     [SerializeField] private Transform piecesRoot;
 
-    [SerializeField] private Sprite sp;
-    [SerializeField] private Difficulty diff;
-
-    [ContextMenu("Test Slice")]
-    public void TestSlice()
-    {
-        SliceImage(sp, diff);
-    }
-    
     public List<Piece> SliceImage(Sprite sprite, Difficulty difficulty)
     {
         DifficultyPattern pattern = patterns.First(p => p.difficulty == difficulty);
         List<Piece> pieces = new List<Piece>();
 
-        for (int i = 0; i < pattern.patternResolution.x; i++)
+        Vector2 resolution = GameManager.GetResolution(difficulty);
+
+        for (int i = 0; i < resolution.x; i++)
         {
-            for (int j = 0; j < pattern.patternResolution.y; j++)
+            for (int j = 0; j < resolution.y; j++)
             {
                 Piece piece = Instantiate(piecePrefab, Vector3.zero, Quaternion.identity, piecesRoot).GetComponent<Piece>();
                 
-                piece.Initialize(sprite, pattern.piecesPattern, new Vector2(i, j), pattern.patternResolution);
+                piece.Initialize(sprite, pattern.piecesPattern, new Vector2(i, j), resolution);
                 
                 pieces.Add(piece);
             }
@@ -44,5 +37,4 @@ public class DifficultyPattern
 {
     public Difficulty difficulty;
     public Sprite piecesPattern;
-    public Vector2 patternResolution;
 }

@@ -33,12 +33,7 @@ public class FieldHandler : MonoBehaviour
         solvedImageView.gameObject.SetActive(true);
         solvedUI.SetActive(true);
     }
-
-    public void RestartGame()
-    {
-        StartGame(currentImage, currentDifficulty);
-    }
-
+    
     public void ClearGame()
     {
         piecesHandler.ClearPieces();
@@ -97,7 +92,6 @@ public class FieldHandler : MonoBehaviour
             
             piece.SetSolvedPoint(new Vector2(xSolve, ySolve));
             piece.SetHandler(piecesHandler);
-            piecesHandler.ResetPieces();
         }
     }
 }

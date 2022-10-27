@@ -99,11 +99,4 @@ public class PiecesHandler : MonoBehaviour
         pieceRect.anchoredPosition = new Vector2(xPos, yPos);
 
     }
-
-    public void ResetPieces()
-    {
-        UnsetDraggable();
-        EnablePieces();
-        pieces.ForEach(p => p.Reset());
-    }
 }

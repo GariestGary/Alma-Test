@@ -41,11 +41,6 @@ public class Piece : MonoBehaviour
         imageRenderer.material.SetVector(PatternResolution, new Vector4(patternResolution.x, patternResolution.y));
     }
 
-    public void Reset()
-    {
-        solved = false;
-    }
-
     public void SetSolvedPoint(Vector2 point)
     {
         solvePoint = point;

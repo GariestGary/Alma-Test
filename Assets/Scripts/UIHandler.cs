@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIHandler : MonoBehaviour
 {
     [SerializeField] private ImageSelectUI imageSelect;
     [SerializeField] private DifficultySelectUI difficultySelect;
+    [SerializeField] private Button startButton;
 
     private GameManager game;
     
     public void Initialize(GameManager game)
     {
         this.game = game;
+        imageSelect.SelectedPreviewChangedEvent.AddListener(RefreshSelection);
+        startButton.interactable = false;
     }
 
     public void UpdateContent()
@@ -22,10 +26,9 @@ public class UIHandler : MonoBehaviour
         }
     }
 
-    public void RefreshSelect()
+    private void RefreshSelection()
     {
-        //select first image at start
-        imageSelect.SelectImage(imageSelect.Previews[0]);
+        startButton.interactable = true;
     }
 
     public Sprite GetSelectedImage()
